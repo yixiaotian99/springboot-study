@@ -1,7 +1,10 @@
 package com.xiao.study.web.config;
 
+import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.PropertySource;
+import org.springframework.context.support.PropertySourcesPlaceholderConfigurer;
 
 /**
  * @Author sunjinwei
@@ -10,5 +13,15 @@ import org.springframework.context.annotation.Configuration;
  **/
 @Configuration
 @ComponentScan("com.xiao.study.web")
+//@PropertySource("classpath:application.yml")
 public class AppConfig {
+
+
+//    @Bean
+//    public static PropertySourcesPlaceholderConfigurer
+//    propertySourcesPlaceholderConfigurer() {
+//        return new PropertySourcesPlaceholderConfigurer();
+//    }
+
+
 }

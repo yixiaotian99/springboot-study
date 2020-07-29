@@ -1,8 +1,14 @@
-
-
 myserver:
     name: spring-demo
     port: 8081
     url: http://xx.bb.com
     secure: fale
 
+
+
+test:
+    num: abc
+
+
+conditional:
+    express: enabled
