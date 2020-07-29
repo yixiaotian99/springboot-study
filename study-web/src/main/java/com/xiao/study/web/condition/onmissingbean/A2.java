@@ -1,4 +1,4 @@
-package com.xiao.study.web.condition;
+package com.xiao.study.web.condition.onmissingbean;
 
 import org.springframework.stereotype.Component;
 
@@ -8,5 +8,5 @@ import org.springframework.stereotype.Component;
  * @Description TODO
  **/
 @Component
-public class A {
+public class A2 {
 }

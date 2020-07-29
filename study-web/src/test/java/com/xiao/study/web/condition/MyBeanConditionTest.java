@@ -28,4 +28,24 @@ class MyBeanConditionTest {
     }
 
 
+
+
+    @Test
+    public void testConditionOnMissingBean() {
+        ApplicationContext ctx = new AnnotationConfigApplicationContext(AppConfig.class);
+
+        Object userService = ctx.getBean("userService2");
+        System.out.println(userService);
+    }
+
+
+
+    @Test
+    public void testConditionOnClass() {
+        ApplicationContext ctx = new AnnotationConfigApplicationContext(AppConfig.class);
+
+        Object userService = ctx.getBean("userService3");
+        System.out.println(userService);
+    }
+
 }
