@@ -1,16 +1,52 @@
 plugins {
+    id 'org.springframework.boot' version '2.3.1.RELEASE'
+    id 'io.spring.dependency-management' version '1.0.9.RELEASE'
     id 'java'
 }
 
-group 'com.xiao'
-version '1.0-SNAPSHOT'
-
-sourceCompatibility = 1.8
-
-repositories {
-    mavenCentral()
+//根项目并不是 boot 项目，过滤掉
+bootJar {
+    enabled = false
 }
 
-dependencies {
-    testCompile group: 'junit', name: 'junit', version: '4.12'
+//所有子项目
+subprojects {
+    apply plugin: 'java'
+    apply plugin: 'org.springframework.boot'
+    apply plugin: 'io.spring.dependency-management'
+
+    //坐标
+    group 'com.xiao'
+    version '1.0-SNAPSHOT'
+
+    //编译jdk版本
+    sourceCompatibility = 1.8
+    targetCompatibility = 1.8
+
+    //maven资源库配置
+    repositories {
+        mavenLocal() //优先使用本地库，win下可以跟maven共用，mac os下未找到如何配置共用
+        mavenCentral()
+    }
+
+    //仅在编译时依赖，此处为lombok使用，相关注解在编译时生成getter、setter等
+    configurations {
+        compileOnly {
+            extendsFrom annotationProcessor
+        }
+    }
+
+    dependencies {
+        testCompile group: 'junit', name: 'junit', version: '4.12'
+        compileOnly 'org.projectlombok:lombok'
+        developmentOnly 'org.springframework.boot:spring-boot-devtools'
+        annotationProcessor 'org.projectlombok:lombok'
+        testImplementation('org.springframework.boot:spring-boot-starter-test') {
+            exclude group: 'org.junit.vintage', module: 'junit-vintage-engine'
+        }
+    }
+
+    test {
+        useJUnitPlatform()
+    }
 }
