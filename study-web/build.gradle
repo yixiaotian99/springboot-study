@@ -7,3 +7,8 @@ dependencies {
 }
 
 
+//自定义任务copy文件，可以 Tasks/custom 下找到 copy 任务
+//task copy(type: Copy, group: "Custom", description: "Copies sources to the dest directory") {
+//    from "src"
+//    into "dest"
+//}
