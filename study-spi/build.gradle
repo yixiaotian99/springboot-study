@@ -1,5 +1,6 @@
 
 dependencies {
+    //使用 maven 本地仓库方式
     compile 'com.xiao:study-spring-boot-starter:1.1-SNAPSHOT'
 
     //直接依赖于项目源码
