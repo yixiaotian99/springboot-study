@@ -1,8 +1,22 @@
-
+//坐标
+group 'com.xiao'
+version '1.1-SNAPSHOT'
 
 
 dependencies {
-    implementation 'org.springframework.boot:spring-boot-starter'
+    compile 'org.springframework.boot:spring-boot-starter'
 }
 
+
+
+//只打包自己写的项目，不会生成关于 spring 的 BOOT-INF/class 文件夹
+//默认文件会生成到 BOOT-INF/class/META-INF/spring.factories 导致不能进行 SPI
+jar {
+    enabled = true
+//    from {
+//        //添加依懒到打包文件
+//        configurations.compile.collect { it.isDirectory() ? it : zipTree(it) }
+////        configurations.runtime.collect{zipTree(it)}
+//    }
+}
 

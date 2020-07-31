@@ -1,9 +1,8 @@
 
-
 //个性化项目依赖
 dependencies {
     implementation 'org.springframework.boot:spring-boot-starter-web'
-    compile 'cn.hutool:hutool-all:5.3.10'
+    implementation 'cn.hutool:hutool-all:5.3.10'
 }
 
 

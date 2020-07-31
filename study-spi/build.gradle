@@ -1,6 +1,8 @@
 
-
 dependencies {
-    implementation 'org.springframework.boot:spring-boot-starter-web'
+    compile 'com.xiao:study-spring-boot-starter:1.1-SNAPSHOT'
+
+    //直接依赖于项目源码
+//    compile project(":study-spring-boot-starter")
 }
 

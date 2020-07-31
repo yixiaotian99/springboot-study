@@ -2,6 +2,9 @@ plugins {
     id 'org.springframework.boot' version '2.3.1.RELEASE'
     id 'io.spring.dependency-management' version '1.0.9.RELEASE'
     id 'java'
+
+    //安装到本地仓库
+    id 'maven'
 }
 
 //根项目并不是 boot 项目，过滤掉
@@ -9,9 +12,15 @@ bootJar {
     enabled = false
 }
 
+
+// 指定本地maven仓库位置，gradle 可以直接引用 maven 仓库中的包，直接放到 gradle 仓库中格式不匹配
+def localmaven = 'file://' + new File("/Users/sunjinwei/Documents/develop/repository-maven").absolutePath
+
+
 //所有子项目
 subprojects {
     apply plugin: 'java'
+    apply plugin: 'maven'
     apply plugin: 'org.springframework.boot'
     apply plugin: 'io.spring.dependency-management'
 
@@ -25,7 +34,14 @@ subprojects {
 
     //maven资源库配置
     repositories {
-        mavenLocal() //优先使用本地库，win下可以跟maven共用，mac os下未找到如何配置共用
+
+        //本地仓库
+        maven {
+            url localmaven
+        }
+
+        //优先使用本地库，win下可以跟maven共用，mac os下未找到如何配置共用
+        mavenLocal()
         mavenCentral()
     }
 
@@ -49,5 +65,18 @@ subprojects {
     test {
         useJUnitPlatform()
     }
+
+
+    //上传jar包到指定仓库
+    uploadArchives {
+        repositories {
+            mavenDeployer {
+                repository(url: localmaven)
+            }
+        }
+    }
+    
 }
+
+
 
